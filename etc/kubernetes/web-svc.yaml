@@ -2,15 +2,20 @@ apiVersion: v1
 kind: Service
 metadata:
   name: armory-web-nginx-service
+  labels:
+    app: website-service
+    stack: web
 spec:
   ports:
-  - port: 8000 # the port that this service should serve on
+  - port: 80 # the port that this service should serve on
     # the container on each pod to connect to, can be a name
     # (e.g. 'www') or a number (e.g. 80)
     targetPort: 80
     protocol: TCP
+
+  type: LoadBalancer
   # just like the selector in the replication controller,
   # but this time it identifies the set of pods to load balance
   # traffic to.
   selector:
-    app: armory-web-nginx
+    app: web-nginx

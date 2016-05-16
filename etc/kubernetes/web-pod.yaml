@@ -2,6 +2,9 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: armory-web-nginx
+  labels:
+    app: web-nginx
+    stack: web
 spec:
   containers:
   - name: armory-web-nginx
@@ -11,3 +14,12 @@ spec:
     volumeMounts:
       - mountPath: /etc/nginx/conf.d/
         name: armory-web-nginx-config
+      - mountPath: /opt/cloudarmory-web
+        name: armory-web-html
+  volumes:
+    - name: armory-web-nginx-config
+      secret:
+        secretName: armory-web-nginx-config
+    - name: armory-web-html
+      secret:
+        secretName: armory-web-html
