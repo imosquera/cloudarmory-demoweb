@@ -54,5 +54,3 @@ updateDNS() {
 
 updateKubeConfig
 updateDNS
-
-#$ docker run -d -P --name web -v /src/webapp:/opt/webapp training/webapp python app.py
