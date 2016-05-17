@@ -30,7 +30,9 @@ updateDNS() {
     sleep 1
   done
 
-  gcloud dns record-sets -z=cloudarmory transaction add --name="demo.cloudarmory.io." --type=A --ttl=300 "$external_ip"
+  gcloud dns record-sets transaction start --zone cloudarmory
+  gcloud dns record-sets transaction add --zone cloudarmory --name=demo.cloudarmory.io --type=A --ttl=300 "$external_ip"
+  gcloud dns record-sets transaction execute --zone cloudarmory
 }
 
 updateDNS
