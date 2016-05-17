@@ -32,4 +32,6 @@ updateDNS() {
 
   gcloud dns record-sets -z=cloudarmory transaction add --name="demo.cloudarmory.io." --type=A --ttl=300 "$external_ip"
 }
+
+updateDNS
 #$ docker run -d -P --name web -v /src/webapp:/opt/webapp training/webapp python app.py
